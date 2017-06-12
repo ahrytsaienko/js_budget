@@ -15,21 +15,21 @@ var UIController = (function () {
         inputValue: '.add__value',
         inputBtn: '.add__btn';
     };
-    
+
     return {
         geInput: function () {
 
             return {
 
-                type:  document.querySelector(DOMstrings.inputType).value, // Will be either inc or exp.
+                type: document.querySelector(DOMstrings.inputType).value, // Will be either inc or exp.
                 description: description = document.querySelector(DOMstrings.inputDescription).value,
                 value: document.querySelector(DOMstrings.inputValue).value
-            }
+            };
 
+        },
+        getDOMstrings: function () {
+            return DOMstrings;
         }
-        getDOMstrings: function(){
-        return DOMstrings;
-    }
     }
 
 })();
