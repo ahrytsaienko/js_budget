@@ -91,7 +91,7 @@ var UIController = (function () {
 
                 type: document.querySelector(DOMstrings.inputType).value, // Will be either inc or exp.
                 description: description = document.querySelector(DOMstrings.inputDescription).value,
-                value: document.querySelector(DOMstrings.inputValue).value
+                value: parseFloat(document.querySelector(DOMstrings.inputValue).value)
             };
 
         },
@@ -129,7 +129,7 @@ var UIController = (function () {
             fieldsArr.forEach(function (current, index, array) {
                 current.value = "";
             });
-            
+
             fieldsArr[0].focus();
         },
         getDOMstrings: function () {
@@ -155,6 +155,15 @@ var controller = (function (budgetCtrl, UICtrl) {
         });
     };
 
+    var updateBudget = function () {
+
+        // 1. Calculate the budget
+
+        // 2. return the budget
+
+        // 3. Display the budgetg on the UI
+
+    };
 
     var ctrlAddItem = function () {
         var input, newItem;
@@ -162,18 +171,19 @@ var controller = (function (budgetCtrl, UICtrl) {
         // 1. Get the field input data
         input = UICtrl.geInput();
         console.log(input)
-        // 2. Add the item to the budget controller
-        newItem = budgetCtrl.addItem(input.type, input.description, input.value);
-        // 3. Add the item to the UI
-        UICtrl.addListItem(newItem, input.type);
 
-        // 4. Clear the fields
-       UICtrl.clearFields();
+        if (input.description !== "" && !isNaN(input.value) && input.value > 0) {
+            // 2. Add the item to the budget controller
+            newItem = budgetCtrl.addItem(input.type, input.description, input.value);
+            // 3. Add the item to the UI
+            UICtrl.addListItem(newItem, input.type);
 
-        // 5. Calculate the budget
+            // 4. Clear the fields
+            UICtrl.clearFields();
 
-        //6. Display the budget on the UI
-
+            // 5. Calculate and update tge budget
+            updateBudget();
+        }
     };
 
     return {
